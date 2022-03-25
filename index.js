@@ -84,14 +84,16 @@ app.post("/i-r/dropbox/upload", (req, res) => {
     body: blob,
   })
     .then(function (response) {
-      return response.text();
+      return response.json();
     })
     .then((response) => {
       console.log("response");
+      console.log(response)
       res.json(response);
     })
     .catch((error) => {
       console.error("test1" + error);
+      console.log(error)
       res.json(error);
     });
 });
