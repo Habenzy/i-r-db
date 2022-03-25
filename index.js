@@ -32,7 +32,7 @@ app.post("/i-r/dropbox/upload", (req, res) => {
   console.log("body data");
   console.log(body.data);
 
-  let b64Array = file_data.split("base64,");
+  let b64Array = body.split("base64,");
   let b64string = b64Array[1];
   let b64FileType = b64Array[0];
   console.log(b64Array);
