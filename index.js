@@ -4,6 +4,7 @@ const cors = require("cors");
 const fetch = require("isomorphic-unfetch");
 const atob = require("atob");
 const Blob = require("node-blob");
+const XMLHttpRequest = require("xmlhttprequest");
 
 const { API_KEY } = process.env;
 const port = process.env.PORT || 3000;
@@ -26,6 +27,8 @@ app.use(function (req, res, next) {
 });
 
 app.post("/i-r/dropbox/upload", (req, res) => {
+  // "https://www.dropbox.com/1/oauth2/authorize?client_id=<app key>&response_type=code&redirect_uri=<redirect URI>&state=<CSRF token>"
+
   console.log("received HS request");
   console.log(req);
   let body = req.body;
@@ -70,36 +73,54 @@ app.post("/i-r/dropbox/upload", (req, res) => {
     autorename: true,
     mute: false,
     strict_conflict: false,
-  })
+  });
 
-  console.log("DB options")
-  console.log(dropboxapi_opts)
+  console.log("DB options");
+  console.log(dropboxapi_opts);
 
-  fetch("https://content.dropboxapi.com/2/files/upload", {
-    method: "POST",
-    headers: {
-      Authorization: "Bearer sl.BEek4nRMoQ2P_wNNk8fxUHo52-bWUtteDUlA_ye4tyMQnQ0ufy9tyuYeslwSZ8CsgpODy4eGB3UpE1r6_1GyVfCQlbbVJ2m6bOmPZHNudQuj9nlTcD4u61Pxf6wsFdmUFAVwsa6JG-Dr",
-      "Content-Type": "text/plain; charset=dropbox-cors-hack",
-      Accept: "*/*",
-      "Accept-Encoding": "gzip, deflate, br",
-      Connection: "keep-alive",
-      "Dropbox-API-Arg": dropboxapi_opts
-    },
-    body: blob
-  })
-    .then(function (response) {
-      return response.json();
+  xhr.open("POST", "https://content.dropboxapi.com/2/files/upload");
+  xhr.setRequestHeader(
+    "Authorization",
+    "Bearer sl.BEek4nRMoQ2P_wNNk8fxUHo52-bWUtteDUlA_ye4tyMQnQ0ufy9tyuYeslwSZ8CsgpODy4eGB3UpE1r6_1GyVfCQlbbVJ2m6bOmPZHNudQuj9nlTcD4u61Pxf6wsFdmUFAVwsa6JG-Dr"
+  );
+  xhr.setRequestHeader("Content-Type", "application/octet-stream");
+  xhr.setRequestHeader(
+    "Dropbox-API-Arg",
+    JSON.stringify({
+      path: "/Homework/math/" + body.name,
+      mode: "add",
+      autorename: true,
+      mute: false,
     })
-    .then((response) => {
-      console.log("response");
-      console.log(response)
-      res.json(response);
-    })
-    .catch((error) => {
-      console.error("test1" + error);
-      console.log(error)
-      res.json(error);
-    });
+  );
+
+  xhr.send(blob);
+
+  // fetch("https://content.dropboxapi.com/2/files/upload", {
+  //   method: "POST",
+  //   headers: {
+  //     Authorization: "Bearer sl.BEek4nRMoQ2P_wNNk8fxUHo52-bWUtteDUlA_ye4tyMQnQ0ufy9tyuYeslwSZ8CsgpODy4eGB3UpE1r6_1GyVfCQlbbVJ2m6bOmPZHNudQuj9nlTcD4u61Pxf6wsFdmUFAVwsa6JG-Dr",
+  //     "Content-Type": "text/plain; charset=dropbox-cors-hack",
+  //     Accept: "*/*",
+  //     "Accept-Encoding": "gzip, deflate, br",
+  //     Connection: "keep-alive",
+  //     "Dropbox-API-Arg": dropboxapi_opts
+  //   },
+  //   body: blob
+  // })
+  //   .then(function (response) {
+  //     return response.json();
+  //   })
+  //   .then((response) => {
+  //     console.log("response");
+  //     console.log(response)
+  //     res.json(response);
+  //   })
+  //   .catch((error) => {
+  //     console.error("test1" + error);
+  //     console.log(error)
+  //     res.json(error);
+  //   });
 });
 
 app.listen(port, () => console.log("Server Running"));
