@@ -4,7 +4,7 @@ const cors = require("cors");
 const fetch = require("isomorphic-unfetch");
 const atob = require("atob");
 const Blob = require("node-blob");
-const XMLHttpRequest = require("xmlhttprequest");
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 const { API_KEY } = process.env;
 const port = process.env.PORT || 3000;
