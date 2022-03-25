@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const axios = require("axios");
+const fetch = require('isomorphic-unfetch')
 const atob = require("atob");
 const Blob = require('node-blob')
 
@@ -64,8 +64,7 @@ app.post("/i-r/dropbox/upload", (req, res) => {
     return ab;
   }
 
-  axios
-    .post("https://content.dropboxapi.com/2/files/upload", blob, {
+  fetch("https://content.dropboxapi.com/2/files/upload", {
       headers: {
         Authorization:
           "Bearer sl.BEcdGHM5zTJhsRzAWrP6HLMVM2ZJUPZm-JZcqf2ApECb06ij2yyCWfpKYtAx-BoZeS1RJYulsf_JhkUW8p3B8jWhbB0Td5Cz4dNk_cRnK5VhHyl_rkX1MjvefVbCzpd6s6hjt4iLTqvQ",
@@ -81,6 +80,7 @@ app.post("/i-r/dropbox/upload", (req, res) => {
           strict_conflict: false,
         }),
       },
+      body: blob
     })
     .then(function (response) {
       return response.json();
