@@ -84,7 +84,7 @@ app.post("/i-r/dropbox/upload", (req, res) => {
     body: blob,
   })
     .then(function (response) {
-      return response.json();
+      return response.text();
     })
     .then((response) => {
       console.log("response");
