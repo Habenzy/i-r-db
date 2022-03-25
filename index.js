@@ -75,7 +75,7 @@ app.post("/i-r/dropbox/upload", (req, res) => {
   console.log("DB options")
   console.log(dropboxapi_opts)
 
-  fetch("https://content.dropboxapi.com/2/files/upload", {
+  fetch("https://eoih2dnulfwwzxu.m.pipedream.net/", {
     method: "POST",
     headers: {
       Authorization: "Bearer sl.BEfgsSotNBPr5jmhrseTTCGB8XtBjOINrk2xvCFp3iGyjfRJPK3oojXw58REe2pRbHyiaOeeKOxnXONPb8P6-MuGd0yf4lARBGpcRxUqebdpSrgaWZLNydJEMtqAa4j4BQhJBe1SKYCq",
