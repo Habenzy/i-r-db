@@ -11,6 +11,7 @@ const app = express();
 
 app.use(express.static("./public"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
 app.use(cors());
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -25,7 +26,7 @@ app.use(function (req, res, next) {
 
 app.post("/i-r/dropbox/upload", (req, res) => {
   console.log("received HS request");
-  console.log(req.body);
+  console.log(req);
   let body = req.body
 
   console.log("body data");
