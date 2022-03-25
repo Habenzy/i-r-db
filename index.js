@@ -68,7 +68,7 @@ app.post("/i-r/dropbox/upload", (req, res) => {
     method: "POST",
     headers: {
       Authorization:
-        "Bearer sl.BEcdGHM5zTJhsRzAWrP6HLMVM2ZJUPZm-JZcqf2ApECb06ij2yyCWfpKYtAx-BoZeS1RJYulsf_JhkUW8p3B8jWhbB0Td5Cz4dNk_cRnK5VhHyl_rkX1MjvefVbCzpd6s6hjt4iLTqvQ",
+        "Bearer sl.BEfgsSotNBPr5jmhrseTTCGB8XtBjOINrk2xvCFp3iGyjfRJPK3oojXw58REe2pRbHyiaOeeKOxnXONPb8P6-MuGd0yf4lARBGpcRxUqebdpSrgaWZLNydJEMtqAa4j4BQhJBe1SKYCq",
       "Content-Type": "text/plain; charset=dropbox-cors-hack",
       Accept: "*/*",
       "Accept-Encoding": "gzip, deflate, br",
