@@ -1,9 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const fetch = require('isomorphic-unfetch')
+const fetch = require("isomorphic-unfetch");
 const atob = require("atob");
-const Blob = require('node-blob')
+const Blob = require("node-blob");
 
 const { API_KEY } = process.env;
 const port = process.env.PORT || 3000;
@@ -65,23 +65,24 @@ app.post("/i-r/dropbox/upload", (req, res) => {
   }
 
   fetch("https://content.dropboxapi.com/2/files/upload", {
-      headers: {
-        Authorization:
-          "Bearer sl.BEcdGHM5zTJhsRzAWrP6HLMVM2ZJUPZm-JZcqf2ApECb06ij2yyCWfpKYtAx-BoZeS1RJYulsf_JhkUW8p3B8jWhbB0Td5Cz4dNk_cRnK5VhHyl_rkX1MjvefVbCzpd6s6hjt4iLTqvQ",
-        "Content-Type": "text/plain; charset=dropbox-cors-hack",
-        Accept: "*/*",
-        "Accept-Encoding": "gzip, deflate, br",
-        Connection: "keep-alive",
-        "Dropbox-API-Arg": JSON.stringify({
-          path: "Homework/math/" + body.name,
-          mode: "add",
-          autorename: true,
-          mute: false,
-          strict_conflict: false,
-        }),
-      },
-      body: blob
-    })
+    method: "POST",
+    headers: {
+      Authorization:
+        "Bearer sl.BEcdGHM5zTJhsRzAWrP6HLMVM2ZJUPZm-JZcqf2ApECb06ij2yyCWfpKYtAx-BoZeS1RJYulsf_JhkUW8p3B8jWhbB0Td5Cz4dNk_cRnK5VhHyl_rkX1MjvefVbCzpd6s6hjt4iLTqvQ",
+      "Content-Type": "text/plain; charset=dropbox-cors-hack",
+      Accept: "*/*",
+      "Accept-Encoding": "gzip, deflate, br",
+      Connection: "keep-alive",
+      "Dropbox-API-Arg": JSON.stringify({
+        path: "Homework/math/" + body.name,
+        mode: "add",
+        autorename: true,
+        mute: false,
+        strict_conflict: false,
+      }),
+    },
+    body: blob,
+  })
     .then(function (response) {
       return response.json();
     })
