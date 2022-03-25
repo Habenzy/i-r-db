@@ -41,7 +41,7 @@ app.post("/i-r/dropbox/upload", (req, res) => {
   // Base64 Back to String
   //  var byteCharacters = Buffer.from(b64string, 'base64');
 
-  const byteCharacters = atob(b64string);
+  const byteCharacters = atob(body.data);
 
   //
   const byteNumbers = new Array(byteCharacters.length);
