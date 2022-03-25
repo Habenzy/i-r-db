@@ -34,38 +34,38 @@ app.post("/i-r/dropbox/upload", (req, res) => {
   let body = req.body;
 
   console.log("body data");
-  console.log(body.data);
+  // console.log(body.data);
 
-  let b64Array = body.data.split("base64,");
-  let b64string = b64Array[1];
-  let b64FileType = b64Array[0];
-  console.log(b64Array);
-  console.log(b64FileType);
-  // Base64 Back to String
-  //  var byteCharacters = Buffer.from(b64string, 'base64');
+  // let b64Array = body.data.split("base64,");
+  // let b64string = b64Array[1];
+  // let b64FileType = b64Array[0];
+  // console.log(b64Array);
+  // console.log(b64FileType);
+  // // Base64 Back to String
+  // //  var byteCharacters = Buffer.from(b64string, 'base64');
 
-  const byteCharacters = atob(body.data);
+  // const byteCharacters = atob(body.data);
 
-  //
-  const byteNumbers = new Array(byteCharacters.length);
+  // //
+  // const byteNumbers = new Array(byteCharacters.length);
 
-  for (let i = 0; i < byteCharacters.length; i++) {
-    byteNumbers[i] = byteCharacters.charCodeAt(i);
-  }
+  // for (let i = 0; i < byteCharacters.length; i++) {
+  //   byteNumbers[i] = byteCharacters.charCodeAt(i);
+  // }
 
-  const byteArray = new Uint8Array(byteNumbers);
+  // const byteArray = new Uint8Array(byteNumbers);
 
-  const blob = new Blob([byteArray], { type: "application/pdf" });
+  // const blob = new Blob([byteArray], { type: "application/pdf" });
 
-  console.log(byteCharacters);
-  function toArrayBuffer(buf) {
-    const ab = new ArrayBuffer(buf.length);
-    const view = new Uint8Array(ab);
-    for (let i = 0; i < buf.length; ++i) {
-      view[i] = buf[i];
-    }
-    return ab;
-  }
+  // console.log(byteCharacters);
+  // function toArrayBuffer(buf) {
+  //   const ab = new ArrayBuffer(buf.length);
+  //   const view = new Uint8Array(ab);
+  //   for (let i = 0; i < buf.length; ++i) {
+  //     view[i] = buf[i];
+  //   }
+  //   return ab;
+  // }
 
   let dropboxapi_opts = JSON.stringify({
     path: "/Homework/math/" + body.name,
