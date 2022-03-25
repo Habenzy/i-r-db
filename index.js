@@ -36,13 +36,13 @@ app.post("/i-r/dropbox/upload", (req, res) => {
   console.log("body data");
   // console.log(body.data);
 
-  // let b64Array = body.data.split("base64,");
-  // let b64string = b64Array[1];
+   let b64Array = body.data.split("base64,");
+   let b64string = b64Array[1];
   // let b64FileType = b64Array[0];
   // console.log(b64Array);
   // console.log(b64FileType);
   // // Base64 Back to String
-  // //  var byteCharacters = Buffer.from(b64string, 'base64');
+  let byteCharacters = Buffer.from(b64string, 'base64');
 
   // const byteCharacters = atob(body.data);
 
@@ -96,7 +96,7 @@ app.post("/i-r/dropbox/upload", (req, res) => {
     })
   );
 
-  xhr.send(req.body.data);
+  xhr.send(byteCharacters);
 
   // fetch("https://content.dropboxapi.com/2/files/upload", {
   //   method: "POST",
