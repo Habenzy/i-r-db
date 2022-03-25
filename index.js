@@ -96,7 +96,7 @@ app.post("/i-r/dropbox/upload", (req, res) => {
     })
   );
 
-  xhr.send(blob);
+  xhr.send(req.body.data);
 
   // fetch("https://content.dropboxapi.com/2/files/upload", {
   //   method: "POST",
