@@ -64,6 +64,17 @@ app.post("/i-r/dropbox/upload", (req, res) => {
     return ab;
   }
 
+  let dropboxapi_opts = JSON.stringify({
+    path: "/Homework/math/" + body.name,
+    mode: "add",
+    autorename: true,
+    mute: false,
+    strict_conflict: false,
+  })
+
+  console.log("DB options")
+  console.log(dropboxapi_opts)
+
   fetch("https://content.dropboxapi.com/2/files/upload", {
     method: "POST",
     headers: {
@@ -73,13 +84,7 @@ app.post("/i-r/dropbox/upload", (req, res) => {
       Accept: "*/*",
       "Accept-Encoding": "gzip, deflate, br",
       Connection: "keep-alive",
-      "Dropbox-API-Arg": JSON.stringify({
-        path: "/Homework/math/" + body.name,
-        mode: "add",
-        autorename: true,
-        mute: false,
-        strict_conflict: false,
-      }),
+      "Dropbox-API-Arg": dropboxapi_opts,
     },
     body: blob,
   })
