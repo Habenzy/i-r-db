@@ -78,6 +78,8 @@ app.post("/i-r/dropbox/upload", (req, res) => {
   console.log("DB options");
   console.log(dropboxapi_opts);
 
+  const xhr = new XMLHttpRequest()
+
   xhr.open("POST", "https://content.dropboxapi.com/2/files/upload");
   xhr.setRequestHeader(
     "Authorization",
