@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
 const atob = require("atob");
+const Blob = require('node-blob')
 
 const { API_KEY } = process.env;
 const port = process.env.PORT || 3000;
