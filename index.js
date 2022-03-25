@@ -78,7 +78,7 @@ app.post("/i-r/dropbox/upload", (req, res) => {
   fetch("https://content.dropboxapi.com/2/files/upload", {
     method: "POST",
     headers: {
-      Authorization: "Bearer sl.BEfgsSotNBPr5jmhrseTTCGB8XtBjOINrk2xvCFp3iGyjfRJPK3oojXw58REe2pRbHyiaOeeKOxnXONPb8P6-MuGd0yf4lARBGpcRxUqebdpSrgaWZLNydJEMtqAa4j4BQhJBe1SKYCq",
+      Authorization: "Bearer sl.BEek4nRMoQ2P_wNNk8fxUHo52-bWUtteDUlA_ye4tyMQnQ0ufy9tyuYeslwSZ8CsgpODy4eGB3UpE1r6_1GyVfCQlbbVJ2m6bOmPZHNudQuj9nlTcD4u61Pxf6wsFdmUFAVwsa6JG-Dr",
       "Content-Type": "text/plain; charset=dropbox-cors-hack",
       Accept: "*/*",
       "Accept-Encoding": "gzip, deflate, br",
