@@ -74,7 +74,7 @@ app.post("/i-r/dropbox/upload", (req, res) => {
       "Accept-Encoding": "gzip, deflate, br",
       Connection: "keep-alive",
       "Dropbox-API-Arg": JSON.stringify({
-        path: "Homework/math/" + body.name,
+        path: "/Homework/math/" + body.name,
         mode: "add",
         autorename: true,
         mute: false,
