@@ -16,6 +16,8 @@ app.use(function(req, res, next) {
 });
 
 app.post('/i-r/dropbox/upload', (req, res) => {
+  console.log("received HS request")
+  console.log(req.body)
   res.json({"status": "hit the endpoint"})
 })
 
