@@ -83,9 +83,9 @@ app.post("/i-r/dropbox/upload", (req, res) => {
       Accept: "*/*",
       "Accept-Encoding": "gzip, deflate, br",
       Connection: "keep-alive",
-      "Dropbox-API-Arg": dropboxapi_opts,
+      "Dropbox-API-Arg": dropboxapi_opts
     },
-    body: blob,
+    body: blob
   })
     .then(function (response) {
       return response.json();
