@@ -7,6 +7,86 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Hello! This is just an endpoint!</h1>
+    <div>
+      <h1>File upload form</h1>
+      <form>
+        <input
+          type="file"
+          name="file"
+          id="file_input"
+          accept="image/png, image/jpg, text/html, text/plain, .pdf"
+        />
+        <input name="file_name" id="file_name" value="pinapple1" type="text" />
+        <input id="test-form" type="submit" />
+      </form>
+    </div>
+    <script>
+      document
+        .getElementById("test-form")
+        .addEventListener("click", function (evt) {
+          evt.preventDefault();
+
+          let file_name;
+
+          let file_unbased = document.getElementById("file_input").files[0];
+          if (file_unbased.type.indexOf("image") == -1) {
+            let file_ext = file_unbased.name.split(".").pop();
+            file_name =
+              document.getElementById("file_name").value + "." + file_ext;
+          } else {
+            file_name = document.getElementById("file_name").value;
+          }
+          function readFile(file) {
+            console.log(file);
+            return new Promise((resolve, reject) => {
+              const reader = new FileReader();
+              reader.onload = () => resolve(reader.result);
+              reader.onerror = (error) => reject(error);
+              reader.readAsDataURL(file);
+            });
+          }
+
+          let filePromise = readFile(file_unbased);
+
+          filePromise.then((file_data) => {
+            // Base64 here
+            console.log(file_data.length);
+            var b64Array = file_data
+              .slice(0, file_data.length - 1)
+              .split("base64,");
+            let b64string = b64Array[1];
+            let b64FileType = b64Array[0];
+            console.log(b64Array);
+            console.log(b64FileType);
+
+            let requestOptions = {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ data: b64Array, name: file_name }),
+            };
+
+            fetch("/i-r/dropbox/upload", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ data: b64Array, name: file_name }),
+            }) //will need to be updated
+              .then((response) => response.text())
+
+              .then((result) => console.log("result" + result))
+
+              .catch((error) => console.log("error", error));
+          });
+        });
+      //   Alt Function
+      /**
+       * Two variables should already be set.
+       * dropboxToken = OAuth access token, specific to the user.
+       * file = file object selected in the file widget.
+       */
+    </script>
   </body>
 </html>
