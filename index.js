@@ -153,6 +153,9 @@ app.get('/show-files', (req, response) => {
       // console.log("statusCode: ", res.statusCode);
       // console.log("headers: ", res.headers);
       // console.log(res)
+      res.on("error", function(e) {
+        response.send(e.message)
+      })
       res.on("data", function (d) {
         // process.stdout.write(d);
         console.log(JSON.parse(d.toString()))
