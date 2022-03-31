@@ -158,7 +158,7 @@ app.get('/show-files', (req, response) => {
         console.log(JSON.parse(d.toString()))
         // sendResponse(JSON.parse(d.toString()))
 
-        response.json(JSON.parse(d.toString()))
+        response.send(JSON.parse(d.toString()))
       });
     }
   );
