@@ -150,12 +150,10 @@ app.get('/show-files', (req, response) => {
       }
     },
     (res) => {
-      // console.log("statusCode: ", res.statusCode);
-      // console.log("headers: ", res.headers);
+      console.log("statusCode: ", res.statusCode);
+      console.log("headers: ", res.headers);
       // console.log(res)
-      res.on("error", function(e) {
-        response.send(e.message)
-      })
+      
       res.on("data", function (d) {
         // process.stdout.write(d);
         console.log(JSON.parse(d.toString()))
@@ -168,7 +166,6 @@ app.get('/show-files', (req, response) => {
   request.write(dropboxapi_opts)
   request.end();
 
-  response.send("yer a wanker Harry!")
 })
 
 app.listen(port, () => console.log("Server Running"));
